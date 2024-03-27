@@ -2,23 +2,19 @@ const mongoose = require('../db');
 
 //creación del schema
 const chatbotSchema = new mongoose.Schema({
-  name: {
+  nombre: {
     type: String,
     required: true,
     trim: true,
   },
-  description: {
-    type: String,
-    trim: true,
-  },
-  responses: [
+  respuestas: [
     {
-      question: {
+      pregunta: {
         type: String,
         required: true,
         trim: true,
       },
-      answer: {
+      respuesta: {
         type: String,
         required: true,
         trim: true,

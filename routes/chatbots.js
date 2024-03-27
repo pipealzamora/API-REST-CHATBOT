@@ -4,12 +4,11 @@ const Chatbot = require('../models/Chatbot');
 
 // Crear chatbot
 router.post('/chatbots', async (req, res) => {
-  const { name, description, responses } = req.body;
+  const { nombre, respuestas } = req.body;
 
   const chatbot = new Chatbot({
-    name,
-    description,
-    responses,
+    nombre,
+    respuestas,
   });
   //creado correctamente
   try {
@@ -73,22 +72,22 @@ router.delete('/chatbots/:id', async (req, res) => {
 // Enviar pregunta y recibir respuesta
 router.post('/chatbots/:id/ask', async (req, res) => {
   const { id } = req.params;
-  const { question } = req.body;
+  const { pregunta } = req.body;
 
   try {
     const chatbot = await Chatbot.findById(id);
 
-    // Ensure chatbot exists and has responses array
-    if (!chatbot || !chatbot.responses || !chatbot.responses.length) {
+    
+    if (!chatbot || !chatbot.respuestas || !chatbot.respuestas) {
       return res.status(404).json({
         success: false,
-        message: 'Chatbot not found or has no responses',
+        message: 'Chatbot no encontrado o no tiene respuestas',
       });
     }
 
-    // Utilize array methods for efficient searching and handling
-    const matchingResponse = chatbot.responses.find(
-      (response) => response.question.toLowerCase() === question.toLowerCase()
+   
+    const matchingResponse = chatbot.respuestas.find(
+      (respuestas) => respuestas.pregunta
     );
 
     if (!matchingResponse) {
@@ -101,7 +100,7 @@ router.post('/chatbots/:id/ask', async (req, res) => {
     res.status(200).json({
       success: true,
       message: 'Respuesta encontrada ',
-      data: matchingResponse.answer,
+      data: matchingResponse.respuesta,
     });
   } catch (error) {
     console.error(error);
