@@ -108,4 +108,8 @@ Ejemplo del json al devolver respuesta
     "success": true,
     "message": "Respuesta encontrada ",
     "data": "insertar respuesta"
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 9f202bf4be2901c7460ca2ad03255252264a1e34
